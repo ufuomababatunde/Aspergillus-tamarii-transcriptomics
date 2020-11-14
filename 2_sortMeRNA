@@ -1,13 +1,14 @@
-!/bin/bash
+#!/bin/bash
 
-cat /home_bif2/miguel.a/Asperg_rna/data_raw/sra/list.txt | parallel -j 1 \
+cat /home_bif2/miguel.a/Asperg_rna/data_raw/sra/list.txt | parallel -j 4 \
 sortmerna \
 --ref /home_bif2/miguel.a/AD/Alzh/rRNA-silva/SILVA_138.1_LSURef_tax_silva.fasta \
 --ref /home_bif2/miguel.a/AD/Alzh/rRNA-silva/SILVA_138.1_SSURef_tax_silva.fasta \
 --reads /home_bif2/miguel.a/Asperg_rna/analysis/trimmo_output/Paired/{}_1_P.fastq \
 --reads /home_bif2/miguel.a/Asperg_rna/analysis/trimmo_output/Paired/{}_2_P.fastq \
---workdir /home_bif2/miguel.a/Asperg_rna/analysis/sortME_output/ \
+--workdir /home_bif2/miguel.a/Asperg_rna/analysis/sortME_output/{}/ \
+--aligned /home_bif2/miguel.a/Asperg_rna/analysis/sortME_output/{}/aligned/ \
 --fastx \
---paired_out \
---threads 18 \
--m 10000 \
+--paired_in \
+--threads 5 \
+-m 5000 \
